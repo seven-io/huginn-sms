@@ -2,14 +2,14 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
-  spec.name          = "huginn_sms77_agent"
+  spec.name          = "huginn_seven_agent"
   spec.version       = '0.1.0'
-  spec.authors       = ["sms77 e.K."]
-  spec.email         = ["support@sms77.io"]
+  spec.authors       = ["seven communications GmbH & Co. KG"]
+  spec.email         = ["support@seven.io"]
 
-  spec.summary       = %q{Send SMS from Huginn via https://sms77.io.}
-  spec.description   = %q{Send SMS from Huginn via https://sms77.io.}
-  spec.homepage      = "https://github.com/sms77io/huginn"
+  spec.summary       = %q{Send SMS from Huginn via https://www.seven.io.}
+  spec.description   = %q{Send SMS from Huginn via https://www.seven.io.}
+  spec.homepage      = "https://github.com/seven-io/huginn"
 
   spec.license       = "MIT"
 

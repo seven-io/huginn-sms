@@ -1,14 +1,14 @@
 require 'net/http'
 
 module Agents
-  class Sms77Agent < Agent
+  class SevenAgent < Agent
     no_bulk_receive!
     cannot_create_events!
     cannot_be_scheduled!
     description <<-MD
-      Agent for sending SMS from Huginn via Sms77.io.
+      Agent for sending SMS from Huginn via seven.io.
 
-      Get an API key at [Sms77](https://sms77.io) and you are ready to start sending!
+      Get an API key at [seven](https://www.seven.io) and you are ready to start sending!
 
       Options:
       * `text` - The message you want to send (required)
@@ -85,7 +85,7 @@ module Agents
       fd.delete('api_key')
       fd.each { |k, v| fd[k] = payload[k] }
 
-      body = HTTParty.post('https://gateway.sms77.io/api/sms',
+      body = HTTParty.post('https://gateway.seven.io/api/sms',
                            :body => fd, :headers => {'Authorization' => "Basic #{payload['api_key']}"})
 
       if !body.is_a?(Hash)
@@ -102,9 +102,9 @@ module Agents
       if [100, 101].include? code
         log body
       elsif 900 === code
-        raise StandardError, "SMS77_AUTH_ERROR: #{body}"
+        raise StandardError, "SEVEN_AUTH_ERROR: #{body}"
       else
-        raise StandardError, "SMS77_DISPATCH_ERROR: #{body}"
+        raise StandardError, "SEVEN_DISPATCH_ERROR: #{body}"
       end
 
       body

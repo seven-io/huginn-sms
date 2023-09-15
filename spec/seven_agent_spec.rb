@@ -1,10 +1,10 @@
 require 'rails_helper'
 require 'huginn_agent/spec_helper'
 
-describe Agents::Sms77Agent do
-  is_live_test = nil != ENV["SMS77_LIVE_TEST"]
-  api_key = is_live_test ? ENV["SMS77_API_KEY"] : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-  to = is_live_test ? ENV["SMS77_RECIPIENT"] : '+4900000000000'
+describe Agents::SevenAgent do
+  is_live_test = nil != ENV["SEVEN_LIVE_TEST"]
+  api_key = is_live_test ? ENV["SEVEN_API_KEY"] : 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  to = is_live_test ? ENV["SEVEN_RECIPIENT"] : '+4900000000000'
 
   before do
     @default_options = {
@@ -25,7 +25,7 @@ describe Agents::Sms77Agent do
       WebMock.allow_net_connect!
     end
 
-    @checker = Agents::Sms77Agent.new name: 'Sms77AgentTest', options: @default_options
+    @checker = Agents::SevenAgent.new name: 'SevenAgentTest', options: @default_options
     @checker.user = users(:bob)
     @checker.save!
 
@@ -86,7 +86,7 @@ describe Agents::Sms77Agent do
       end
       opts = @default_options
       opts[:api_key] = 'thisAintGonnaWork!'
-      expect { @checker.send_sms(opts.stringify_keys) }.to raise_error(StandardError, /SMS77_AUTH_ERROR:/)
+      expect { @checker.send_sms(opts.stringify_keys) }.to raise_error(StandardError, /SEVEN_AUTH_ERROR:/)
     end
 
     it "should raise error on general dispatch error" do
@@ -95,7 +95,7 @@ describe Agents::Sms77Agent do
       end
       opts = @default_options
       opts[:to] = '0'
-      expect { @checker.send_sms(opts.stringify_keys) }.to raise_error(StandardError, /SMS77_DISPATCH_ERROR:/)
+      expect { @checker.send_sms(opts.stringify_keys) }.to raise_error(StandardError, /SEVEN_DISPATCH_ERROR:/)
     end
 
     it "should WORK!" do

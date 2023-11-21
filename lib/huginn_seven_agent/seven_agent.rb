@@ -15,7 +15,6 @@ module Agents
       * `to` - recipient(s) separated by comma - phone number(s) or contact(s) (required)
 
       * `from` - Sender number. *Allowed value: A string of 11 alphanumeric or 16 numeric characters*
-      * `debug` - If activated no SMS will be sent or calculated *Allowed values: 0, 1*
       * `delay` - Date/time for time-delayed SMS: *Allowed values: A UNIX timestamp or date with format yyyy-mm-dd hh:ii*
       * `no_reload` - Switch off reload lock. This lock prevents the sending of the same SMS (text, type and recipient alike) within 180 seconds *Allowed values: 0, 1*
       * `unicode` - For Cyrillic, Arabic etc characters. SMS length is then reduced to 70 characters. The API recognizes the coding automatically; this parameter enforces it *Allowed values: 0, 1*
@@ -37,7 +36,6 @@ module Agents
           'from' => 'Huginn',
           'text' => 'Hope to see you again soon!',
           'to' => '+4900000000000',
-          'debug' => 0,
           'delay' => nil,
           'no_reload' => nil,
           'unicode' => 0,
